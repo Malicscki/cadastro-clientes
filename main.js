@@ -3,15 +3,11 @@
 const openModal = () => document.getElementById('modal')
     .classList.add('active')
 
-const closeModal = () => document.getElementById('modal')
-    .classList.remove('active')
-
-const tempClient = {
-    nome: "Nicolas",
-    email: "nnicolas@gmail.com",
-    celular: "47984759767",
-    cidade: "Blumenau SC"
+const closeModal = () =>  {
+    clearFields()
+    document.getElementById('modal').classList.remove('active')
 }
+
 //CRUD - create read update delete
 
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? [] //transformar em objeto primeiro e o ?? é para verificar se for nulo trazer um array vazio
@@ -61,12 +57,62 @@ const saveClient = () => {
             cidade: document.getElementById('cidade').value
         }
         createClient(client)
-        clearFields()
+        updateTable()
         closeModal()
     }
 
 }
 
+const createRow = (client, index) => {
+    const newRow = document.createElement('tr')
+    newRow.innerHTML = `
+        <td>${client.nome}</td>
+        <td>${client.email}</td>
+        <td>${client.celular}</td>
+        <td>${client.cidade}</td>
+        <td>
+            <button type="button" class="button green" id="edit-${index}">Editar</button>
+            <button type="button" class="button red" id="delete-${index}">Excluir</button>
+        </td>
+    `
+    document.querySelector('#tableClient>tbody').appendChild(newRow)
+}
+
+const clearTable = () => {
+    const rows = document.querySelectorAll('#tableClient>tbody tr')
+    rows.forEach(row => row.parentNode.removeChild(row))
+}
+const updateTable = () => {
+    const dbClient = readClient()
+    clearTable()
+    dbClient.forEach(createRow) //forEach para pegar cada um dos clientes
+}
+
+const fillFields = (client) => {
+    document.getElementById('nome').value = client.nome
+    document.getElementById('email').value = client.email
+    document.getElementById('celular').value = client.celular
+    document.getElementById('cidade').value = client.cidade
+ }
+
+const editClient = (index) => {
+    const client = readClient()[index]
+    fillFields(client)
+    openModal()
+}
+
+const editDelete = (event) => {
+    if (event.target.type == 'button') {
+        const [action, index] = event.target.id.split('-')
+
+        if (action == 'edit') {
+            editClient(index)
+        } else {
+            console.log("deletando clientes")
+        }        
+    }
+}
+updateTable()
 
 //Eventos
 document.getElementById('cadastrarCliente')
@@ -77,6 +123,9 @@ document.getElementById('modalClose')
 
 document.getElementById('salvar')
     .addEventListener('click', saveClient)
+
+document.querySelector('#tableClient>tbody')
+    .addEventListener('click', editDelete)
 
 
 
