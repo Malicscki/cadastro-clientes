@@ -1,161 +1,88 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team KOH</title>
-    <link rel="stylesheet" type="text/css" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="style.css" >
-    <link rel="stylesheet" type="text/css" href="cards.css" >
-    <link rel="stylesheet" type="text/css" href="contato.css" >
-    <link rel="stylesheet" type="text/css" href="mobile.css" >
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="fonts-icones.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/records.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src="main.js" defer></script>
+    <title>CRUD</title>
 </head>
-    <body>    
-            <video id="background" poster="poster.jpg" autoplay muted loop>
-            <source src="KOH2.mp4" type="video/mp4">
-            </video>
-            
-            <div class="cabecalho" id="cabecalho">
-                <nav>
-                    <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#highlights">HIGHLIGHTS</a></li>
-                        <li><a href="#integrantes">INTEGRANTES</a></li>
-                        <li><a href="#contato">CONTATO</a></li>
-                    </ul>
-                </nav>
+<body>
+    <header>
+        <h1 class="header-title">Cadastro de Clientes</h1>
+    </header>
+    <main>
+        <button type="button" class="button blue mobile" id="cadastrarCliente">Cadastrar Cliente</button>
+        <table id="tableClient" class="records">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Celular</th>
+                    <th>Cidade</th>
+                    <th>Ação</th>
+                </tr>
+            </thead> 
+            <tbody>
+                <!-- <tr>
+                    <td>Maria</td>
+                    <td>maria@gmail.com</td>
+                    <td>(47) 9999-1111</td>
+                    <td>Blumenau</td>
+                    <td>
+                        <button type="button" class="button green">editar</button>
+                        <button type="button" class="button red">excluir</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>João Pedro</td>
+                    <td>joao@gmail.com</td>
+                    <td>(47) 97165-2222</td>
+                    <td>Brusque</td>
+                    <td>
+                        <button type="button" class="button green">editar</button>
+                        <button type="button" class="button red">excluir</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jose da Silva</td>
+                    <td>jose@gmail.com</td>
+                    <td>(47) 97165-3333</td>
+                    <td>Joinville</td>
+                    <td>
+                        <button type="button" class="button green">editar</button>
+                        <button type="button" class="button red">excluir</button>
+                    </td>
+                </tr> -->
+            </tbody>
+        </table>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Novo Cliente</h2>
+                    <span class="modal-close" id="modalClose">&#10006;</span>
+                </header>
+                <form  id="form" class="modal-form">
+                    <input type="text" id="nome" data-index="new" class="modal-field" placeholder="Nome do Cliente" required>
+                    <input type="email" id="email" class="modal-field" placeholder="e-mail do Cliente" required>
+                    <input type="text" id="celular" class="modal-field" placeholder="Celular do Cliente" required>
+                    <input type="text" id="cidade" class="modal-field" placeholder="Cidade do Cliente" required>
+                </form>
+                <footer class="modal-footer">
+                    <button id="salvar" class="button green">Salvar</button>
+                    <button id="cancelar" class="button blue">Cancelar</button>
+                </footer>
             </div>
-            
-            <main>            
-            <div class="sobre" id="home">
-                <a>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</a>
-            </div>
-
-            <div class="video" id="highlights">
-                <h2><strong>HIGHLIGHTS+</strong></h2>  
-                
-                <div class="video1"><iframe  width="560" height="315" src="https://www.youtube.com/embed/xyKwZXmO7zQ?autoplay=1&mute=1&loop=1&playlist=xyKwZXmO7zQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-                <div class="video2"><iframe  width="560" height="315" src="https://www.youtube.com/embed/4cFkTx7lQ2k?autoplay=0&mute=1&loop=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-                <div class="video3"><iframe  width="560" height="315" src="https://www.youtube.com/embed/A7-9LqfbQwI?autoplay=0&mute=1&loop=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-            
         </div>
-
-        <div class="integrantes" id="integrantes">
-            <h2><strong>INTEGRANTES ( 19 )</strong></h2>  
-            <div class="cards">        
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Jef</figcaption>            
-                </figure>
-                <figure class="card">
-                    </a><img src="koh-preto.jpg" />
-                    <figcaption>Malicscki</figcaption>
-                </figure>
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Tonizera</figcaption>
-                </figure>
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Mike</figcaption>
-                </figure>   
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>FallBackDown</figcaption>
-                </figure> 
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Geddelzinho</figcaption>
-                </figure> 
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>digueira</figcaption>
-                </figure> 
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Danielz</figcaption>
-                </figure> 
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Zord_-</figcaption>
-                </figure> 
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>raf4FPS</figcaption>
-                </figure> 
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Momesso</figcaption>
-                </figure> 
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Geek</figcaption>
-                </figure>   
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Generex</figcaption>
-                </figure>   
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Kraken</figcaption>
-                </figure>  
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Pitbixa</figcaption>
-                </figure>  
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Lagos</figcaption>
-                </figure>   
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Zorba_-</figcaption>
-                </figure>   
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Radar</figcaption>
-                </figure>     
-                <figure class="card">
-                    <img src="koh-preto.jpg" />
-                    <figcaption>Trambolinho</figcaption>
-                </figure>   
-            </div>
-
-            <div class="content" id="contato">
-                <h2><strong>CONTATO</strong></h2>  
-                <div class="profilecard">
-                    <div class="me">
-                        <div class="avatar">
-                            <img src="koh-preto.jpg" />
-                        </div>
-                        <div class="username">
-                            <span><strong>TeamKOH</strong>#BFezAArXEU</span>
-                        </div>
-                    </div>
-                    <div class="role">
-                        <span><strong>CONVITE FIXO</strong></span>
-                        <a href="https://discord.gg/BFezAArXEU">ACESSO AO DISCORD KOH</a></a>
-                    </div>
-                    <div class="note">
-                        <div class="noteheader">
-                            <span><strong>SOBRE</strong></span>
-                        </div>
-                        <a>* PUBG </a>
-                        <a>* VALORANT </a>
-                        <a>* CS </a>
-                    </div>
-                    <div class="message">
-                        <input type="text" id="message" placeholder="Mensagem @Team KOH"/>
-                        </div>
-                    </div>
-            </div>
-        </body>
     </main>
-    <script src="scroll.js"></script>
+    <footer>
+        Copyright &copy; Luiz Carlos Malicscki
+    </footer>           
 </body>
 </html>
